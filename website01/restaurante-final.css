@@ -125,6 +125,11 @@ Posicionamento Flutuante
 	  position:fixed;	  
   }
 
+.web-sobre-tudo {
+    
+    z-index: 10000;
+}
+
 /*
 
 Dimensionamento
