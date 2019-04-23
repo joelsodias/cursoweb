@@ -1,0 +1,272 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>PANORÂMICA CHURRASCARIA</title>
+	<link rel="stylesheet" href="restaurante-final.css">
+	
+	
+	<script>
+
+      function checkProxSlide() {
+          
+          
+          
+      }  
+        
+        
+	/* Rotina para identificar se houve rolamento de tela (Scroll) 
+
+	
+    
+	
+	window.onscroll = function() {
+	
+	
+	   if (window.pageYOffset > 0) {
+           
+		  document.getElementById("navegacao-topo").style.display = "flex";
+           
+	   } else {
+           
+		  document.getElementById("navegacao-topo").style.display = "none";
+           
+	   }
+  	
+    }
+	*/
+        
+        
+      /* muda banner */
+        
+        
+function sliderchange() {
+
+   var s=document.getElementById("slider1");
+   var  inputs = s.getElementsByTagName("input");
+
+//alert(inputs);
+
+   var i;
+   var chk=false;
+   for (i = 0; i < inputs.length; i++) { 
+     //alert(inputs[i].checked);
+     
+     if (inputs[i].checked) {
+       if (i == inputs.length - 1) {
+         inputs[0].checked = true;
+         break;
+       } else { 
+         chk=true;
+         continue;
+       }
+     }
+     
+     if (chk) {
+       inputs[i].checked=true;
+       break;
+       chk=false;
+     }
+     
+     
+   }
+
+
+   
+}
+
+setInterval(function(){ sliderchange(); }, 3000);
+
+        
+        
+	</script>
+	
+  </head>
+  
+<body>
+
+
+<!-- Menu -->
+<nav id="navegacao-topo" class="web-cor-branco web-fixo web-nao-sel web-sombra-baixo web-largura-100">
+    
+ <div class="web-largura-100  web-flex web-flex-between">
+    
+	<div >
+	  <a href="#inicio" class="web-flex web-botao">PANORÂMICA CHURRASCARIA</a>
+	</div>
+     
+    <div class="web-botao web-nao-quebra">
+	  (51) 997755332
+	</div>
+	
+	<div class="web-flex web-esconde-tela-pequena">
+	  <a href="#inicio" class="web-botao ">Início</a>
+      <a href="#sobre" class="web-botao">Sobre</a>
+      <a href="#cardapio" class="web-botao">Cardápio</a>
+      <a href="#contato" class="web-botao">Contato</a>
+    </div>
+	
+ </div>	
+    
+    <div class="web-mostra-tela-pequena" >
+ <a href="#inicio" class="web-botao">Início</a>
+      <a href="#sobre" class="web-botao">Sobre</a>
+      <a href="#cardapio" class="web-botao">Cardápio</a>
+      <a href="#contato" class="web-botao">Contato</a>
+ </div>
+ 
+</nav>
+
+
+<!-- Cabeçalho -->
+<header id="inicio" class="" >
+  <div class="web-imagem-header web-flex web-flex-coluna web-flex-end">
+    <div class="web-imagem-logo "></div>
+  </div>
+    <div class="web-mostra-tela-pequena web-centraliza web-largura-100 web-flex-centro zweb-padding-100tb web-fonte-media">
+   
+  
+    
+    </div> 
+    
+    <div class="slider-container web-mostra-tela-pequena">
+      
+ <ul class="slider" id="slider1">
+     <li>
+           <input type="radio" id="slide1" name="slide" checked>
+           <label for="slide1"></label>
+           <div class="banner imagem1"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide2" name="slide">
+           <label for="slide2"></label>
+           <div class="banner imagem2"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide3" name="slide">
+           <label for="slide3"></label>
+           <div class="banner imagem3"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide4" name="slide">
+           <label for="slide4"></label>
+           <div class="banner imagem4"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide" name="slide" class="slide">
+           <label for="slide5"></label>
+           <div class="banner imagem5"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide6" name="slide">
+           <label for="slide6"></label>
+           <div class="banner imagem6"></div>
+     </li>
+     <li>
+           <input type="radio" id="slide7" name="slide">
+           <label for="slide7"></label>
+           <div class="banner imagem7"></div>
+     </li>
+ </ul>    
+</div>     
+    
+    
+</header>
+
+
+    
+
+<!-- Conteúdo -->
+<main>
+    
+
+    
+    
+  <!-- Sobre -->
+  <section id="sobre"  >
+  <div>
+      <h2 >Sobre <span class="web-esconde-tela-pequena">a Churrascaria</span></h2>
+      <h3 >Tradição desde 1982</h3>
+      <p >A Panorâmica Churrascaria é uma casa tradicional de Porto Alegre, mais de vinte anos no mercado, atendendo seus clientes diariamente, oferecendo mais de 20 cortes entre carnes, peixes, cordeiro, javali e galeto, servidos no sistema de rodízio. 
+	  </p>
+	  <p >
+	  O farto buffet de saladas e acompanhamentos, além de uma deliciosa seleção de sobremesas, agradam e surpreendem os mais exigentes paladares. O local possui capacidade para 160 pessoas no salão principal e até 60 pessoas em um espaço anexo, perfeito para confraternizações entre amigos e familiares ou encontros de negócios. </p>
+      </div>
+  </section>
+  
+  
+  <div class="web-centraliza">
+    <img class="web-imagem-divisoria" src="imagens/divisoria1.png">
+  </div>
+  
+  
+  <!-- Cardápio -->
+  <section id="cardapio"  >
+    <div>
+	
+    <img id="imagem-cardapio" src="imagens/picanha.png" class="web-direita web-esconde-tela-pequena web-imagem-40perc " alt="" style="">
+    
+	
+	<div >
+      <h2 ><span class="web-esconde-tela-pequena">Nosso </span>Cardápio</h2>
+	  <br>
+      <h3>Espeto Corrido</h3>
+      <p >Mais de 20 vaiedades de carne, servidas diretamente pelos garçons</p>
+      <br>
+	  <br>
+      <h3>Espeto executivo</h3>
+      <p >Dez tipos de carnes servidos na mesa, com acompanhamentos</p>
+	  <br>
+      <br>
+      <h3>Tábua de carnes</h3>
+      <p >Sete tipos de carnes servidos na mesa, com acompanhamentos</p><br>
+           
+    </div>
+    
+    </div>
+      
+  </section>
+
+  <div class="web-centraliza">
+  <img class="web-imagem-divisoria " src="imagens/divisoria1.png">
+  </div>
+
+  
+
+  <!-- Contato -->
+<section id="contato"  >
+    <div>
+    <h2>Contato</h2>
+    <p>Oferecemos serviço completo para qualquer evento, grande ou pequeno. Não hesite em nos contatar.</p>
+    
+    <p>Você pode entrar em contato pelo formulário abaixo, pelo telefone (51) 997755332 ou pelo e-mail contato@espetodeouro.com.br</p>
+    
+	<form class="web-centraliza-margin" id="formContato" method="GET" action="http://localhost/formmail.php">
+        <label>Nome completo:</label><br>
+        <input type="text" name="nome" size="50" maxlength="50" placeholder="Informe seu nome">
+        <br><br>
+        <label>E-mail:</label><br>
+        <input type="text" name="subject" size="50" maxlength="50" placeholder="Informe seu e-mail">
+        <br><br>
+        <label>Mensagem:</label><br>
+        <textarea  name="mensagem" size="50" cols="50" lines="10" maxlength="1500" placeholder="Escreva sua mensagem"></textarea>
+        <br><br>
+        <button type="submit">Enviar</button>
+    
+    </form>
+	</div>
+  </section>
+  
+
+</main>
+
+<!-- Rodape -->
+<footer>
+
+  <p>Desenvolvido por <a href="mailto:" target="_blank" >Turma Web</a></p>
+  
+</footer>
+
+
+
+</body>
+</html>
