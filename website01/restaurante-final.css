@@ -81,7 +81,7 @@ Framework
 	  background-image: url("imagens/logo.png");
       width: 389px;
       height: 189px;
-	  zmargin-left:60px;
+	  
   }
   
   .web-imagem-divisoria{
@@ -530,10 +530,36 @@ Compensação de diferentes tamanhos de tela
       
   }
     
+     .web-imagem-logo{
+	  background-size:contain;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 180px;
+      d-isplay:none;
+  }   
   
 }
 
-
+@media  screen and (max-width: 300px) {
+ 
+ html {
+    font-size: 12px;
+  }
+   
+  .web-esconde-tela-pequena {
+	  display:none!important;
+	  
+  }
+  
+  .web-mostra-tela-pequena {
+	  display:flex;
+      
+  }
+   
+    
+  
+  
+}
 
   
  
