@@ -1,0 +1,240 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculadora</title>
+
+  <style>
+  
+     .calculadora {
+         width:400px;
+         padding: 10px;
+         border:1px solid #000;
+     }
+
+     .calc_display {
+         margin-bottom:10px;
+         border:1px solid #000;
+         padding:5px;
+     }
+
+     .calc_teclado {
+         display:flex;
+         background-color: bisque;
+
+     }
+
+     .calc_teclado .numeros {
+        border:1px solid #000;
+        margin:3px;
+     }
+
+     .calc_teclado .operacoes {
+        border:1px solid #000;
+        margin:3px;
+     }
+
+     button {
+         margin:3px;
+         width:60px;
+         height:60px;
+         font-size: large;
+     }
+
+     button.ativo {
+         background-color:  red;
+     }
+  
+  </style>
+
+  <script>
+
+    function calcula(op1,op2,acao) {
+        try {
+            op1 = parseFloat(op1)
+            op2 = parseFloat(op2)
+
+            switch (acao) {
+                case "somar": return op1 + op2; break;
+                case "subtrair": return op1 - op2; break;
+                case "dividir": return op1 / op2; break;
+                case "multiplicar": return op1 * op2; break;
+                default: return "Error"
+                    break;
+            }
+
+        } catch (error) {
+            return "Error"      
+        }
+
+
+    }
+
+    function load () {
+
+        const calculadora = document.querySelector(".calculadora");
+            //alert(calculadora);
+        const display = calculadora.querySelector(".calc_display"); 
+        const hist = calculadora.querySelector(".calc_historico");    
+        const teclado = calculadora.querySelector(".calc_teclado");
+
+        calculadora.operacao="";
+        calculadora.operando1="";
+        calculadora.operando2="";
+        
+       
+        teclado.addEventListener("click", function (e) {
+              
+            if (e.target.matches("button")) {
+               
+                const tecla = e.target;
+                var acao = tecla.getAttribute("acao");
+                const textoTecla = tecla.innerText;
+                const displayVal = display.innerText;
+
+
+                if (acao==="numero") {
+                   
+                    if (displayVal === '0' ) {
+                        display.innerText = textoTecla
+                    } else {
+                        display.innerText = displayVal + textoTecla;
+                    }
+
+                    if (calculadora.operacao) {
+                        calculadora.operando2 = display.innerText;
+                    } else {
+                        calculadora.operando1 = display.innerText;  
+                    }
+
+                } 
+                
+                if (acao === 'somar' ||
+                    acao === 'subtrair' ||
+                    acao === 'multiplicar' ||
+                    acao === 'dividir'
+                    ) {
+                        if (!calculadora.operacao) {
+                        calculadora.operando1 = display.innerText;
+                        calculadora.operacao = acao;
+                        display.innerText="0";
+                        calculadora.operando2=""; 
+                        } 
+                        else {
+                          if (calculadora.operando2) {
+                            display.innerText = calcula(calculadora.operando1,calculadora.operando2,calculadora.operacao);
+                            calculadora.operando1 = display.innerText;
+                            calculadora.operacao = acao;
+                            calculadora.operando2 = "";
+                            display.innerText="0";
+                          } else {
+                            calculadora.operacao = acao; 
+                          }  
+                        }
+                        
+
+                    
+                }
+
+                if (acao === 'decimal') {
+                    if (calculadora.acaoAnterior!=="decimal" && display.innerText.indexOf(".") < 0) {
+                    display.innerText = displayVal + textoTecla;
+
+                    } else { console.log("ja tem ponto decimal")}
+                }
+
+                if (acao === 'limpar') {
+                    
+                    display.innerText = "0"; 
+                    calculadora.operando1="";
+                    calculadora.operando2="";
+                    calculadora.operacao="";
+                }
+                if (acao === 'BS') {
+                    if (display.innerText.length == 1) {
+                        display.innerText = 0;
+                    } else {
+                      display.innerText = display.innerText.substring(0, display.innerText.length-1);
+                    }
+                    if (calculadora.operacao) {
+                        calculadora.operando2 = display.innerText;
+                    } else {
+                        calculadora.operando1 = display.innerText;  
+                    }
+                }
+
+                if (acao === 'calcular') {
+                    if (calculadora.operacao) {
+                       calculadora.operando2 = display.innerText;    
+                       display.innerText = calcula(calculadora.operando1,calculadora.operando2,calculadora.operacao);
+                       calculadora.operando1 = display.innerText;
+                       calculadora.operando2="";
+                       calculadora.operacao="";
+                    }
+                }
+
+
+
+                
+
+                calculadora.acaoAnterior=acao;  
+                console.clear();
+                console.log("operando1:"+calculadora.operando1);
+                console.log("operacao:"+calculadora.operacao);
+                console.log("operando2:"+calculadora.operando2);
+                hist.innerText=calculadora.operando1 + " " + calculadora.operacao + " " + calculadora.operando2;
+                
+              } else {
+                  console.log(e);
+              }
+        });
+
+     }
+     //document.addEventListener("DOMContentLoaded", load, false); 
+     window.onload = load;
+
+     
+  </script>
+
+  </head>
+  <body>
+    <div class="calculadora">
+        <div class="calc_display">0</div>
+        <div class="calc_historico"></div>
+        <div class="calc_teclado">
+           <div class="numeros">
+                <button acao="numero">1</button>
+                <button acao="numero">2</button>
+                <button acao="numero">3</button>
+                <button acao="numero">4</button>
+                <button acao="numero">5</button>
+                <button acao="numero">6</button>
+        
+            <button acao="numero">7</button>
+            <button acao="numero">8</button>
+            <button acao="numero">9</button>
+            <button acao="numero">0</button>
+            <button acao="decimal">.</button>
+           </div>  
+           <div class="operacoes">
+             <button acao="limpar">AC</button>  
+             <button acao="BS"><<</button>  
+            <button class="calc_operador" acao="somar">+</button>
+            <button class="calc_operador" acao="subtrair">-</button>
+            <button class="calc_operador" acao="multiplicar">&times;</button>
+            <button class="calc_operador" acao="dividir">÷</button>
+            
+            
+            <button class="calc_calcular" acao="calcular">=</button>
+           </div>
+          </div>
+
+          <div id="debug">
+              <div id="operando1"></div>
+              <div id="operacao"></div>
+              <div id="operando2"></div>
+          </div>
+
+      </div>
+      
+  </body>
+</html>  

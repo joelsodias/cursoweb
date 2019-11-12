@@ -1,0 +1,52 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Soma</title>
+
+  <style>
+     body > div {
+         margin:50px;
+     }
+ 
+  
+  </style>
+
+  <script>
+
+     function calcular() {
+        var op1 = document.getElementById("op1");
+        var op2 = document.getElementById("op2");
+        var res = document.getElementById("res");
+                
+        var soma = 
+          (parseFloat(op1.value.replace(",",".")) + 
+          parseFloat(op2.value.replace(",",".")));
+
+          res.textContent = soma.toString().replace(".",",")
+     }
+
+
+     function load () {
+        var btn2 = document.getElementById("btn2");
+
+        btn2.addEventListener("click",calcular)
+
+     }
+     document.addEventListener("DOMContentLoaded", load, false);
+
+     
+     
+  </script>
+
+  </head>
+  <body>
+    <div>
+        <input type="text" id="op1">
+        <input type="text" id="op2">
+        
+        <button onclick="calcular();">Resultado</button>
+        <button id="btn2">btn2</button>
+        <div id="res">Resultado: </div>
+        </div>
+  </body>
+</html>  
