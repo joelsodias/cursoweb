@@ -1,0 +1,177 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>Ajax001</title>
+
+    <script 
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+    <script>
+    
+       $(document).ready(function () {
+          
+         //////////////////////////////////////////////////////////////////
+
+         var arraymeses = Array("Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez")
+
+         $.each(arraymeses, function (chave,valor){
+             $("#in-mes").append("<option value='"+valor+"'>"+valor+"</option>");
+         })
+
+         //////////////////////////////////////////////////////////////////   
+          // inicializar o combo de dias
+          var arraydias = Array();
+          for (var d=1;d<32;d++) {
+            var dia = ("00"+d).slice(-2); 
+            arraydias.push("<option value='"+dia+"'>"+dia+"</option>");
+          }
+          $("#in-dia").append(arraydias.join("\n"));
+          
+
+          //////////////////////////////////////////////////////////////////
+          var arrayhoras = Array();
+          for (var h=8;h<20;h++) {
+              for (var m=0;m<60;m=m+15){
+                  var hora = ("00"+h).slice(-2)+":"+("00"+m).slice(-2);
+                  arrayhoras.push("<option value='"+hora+"'>"+hora+"</option>");                      
+              }
+          }
+          $("#in-hora").append(arrayhoras.join("\n"));
+
+          //////////////////////////////////////////////////////////////////
+          
+
+
+
+          // aqui vamos iniciar o desenvolvimento
+          $("#btn-incluir").click(function(){
+              var uid = "x" + new Date().valueOf();
+              var linha =
+                  "<tr id='"+uid+"' salvo='N'>"
+                  +  "<td>"+$("#in-mes").val()+"</td>"
+                  +  "<td>"+$("#in-dia").val()+"</td>"
+                  +  "<td>"+$("#in-hora").val()+"</td>"
+                  +  "<td>"+$("#in-espec").val()+"</td>"
+                  +  "<td>"+$("#in-paciente").val()+"</td>"
+                  +  "<td>--</td>"
+                  +  "<td><button onclick='remover(\""+uid+"\")'>Excluir</button></td>"
+                  + "</tr>"
+              
+              incluir(linha);  
+
+          })
+
+       });
+
+       function incluir(linha) {
+        $("#tb-lista > tbody").append(linha);
+       }
+
+       function remover(id) {
+           $("#"+id).remove();
+       }
+    
+    </script>
+
+
+    <style>
+    * {
+        margin:0px;
+        padding:0px;
+    } 
+
+    header {
+        margin:40px 20px;
+    }
+
+    h2 {
+        margin:40px 20px;
+        text-align: center;
+    }
+
+    main {
+        display:flex;
+
+    }
+
+    section {
+        border:1px solid #ccc;
+        padding:10px;
+        margin:50px;
+    }
+
+    section#sec-form {
+        width:20%;
+    }
+
+    section#sec-list {
+        width:80%;
+    }
+
+    input {
+        width:100%;
+
+    }
+
+    #tb-lista thead {
+        background-color:lightblue;
+        text-align: center;
+        overflow:scroll;
+        max-height: 500px;
+    }
+
+    #div-scroll{
+        overflow-y:scroll;
+        max-height: 500px;
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Exercicio de SPA</h1>
+    </header>
+
+    <main>
+    <section id="sec-form">
+    <h2>Formulário</h2>
+    <div>
+        Dia/Hora:<br/>
+        <select id="in-mes"></select><select id="in-dia"></select><select id="in-hora"></select><br/>
+        Especialidade:<br/>
+        <select id="in-espec">
+        <option value="PED">Pediatra</option> 
+        <option value="CLI">Clinico Geral</option> 
+        <option value="OTO">Otorrino</option> 
+        </select>
+        <br/>
+        Paciente:<br/> 
+        <input id="in-paciente" type="text"><br/><br/>
+        <button id="btn-incluir">Incluir</button>
+    </div>
+    </section>
+    
+    <section id="sec-list">
+    <h2>Lista</h2>
+    <div id="div-scroll">
+    <table id="tb-lista" width="100%">
+        <thead>
+            <td>MÊS</td>
+            <td>DIA</td>
+            <td>HORA</td>
+            <td>ESPECIALIDADE</td>
+            <td>PACIENTE</td>
+            <td>SALVO</td>
+            <td>&NonBreakingSpace;</td>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    </div>
+    </section>
+</main>
+</body> 
+</html> 

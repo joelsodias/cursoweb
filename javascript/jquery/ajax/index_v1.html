@@ -1,0 +1,104 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>SPA</title>
+  
+
+    <style>
+        * {
+            margin:0px;
+            padding:0px;
+        } 
+    
+        header {
+            margin:40px 20px;
+        }
+    
+        h2 {
+            margin:40px 20px;
+            text-align: center;
+        }
+    
+        main {
+            display:flex;
+    
+        }
+    
+        section {
+            border:1px solid #ccc;
+            padding:10px;
+            margin:50px;
+        }
+    
+        section#sec-form {
+            width:20%;
+        }
+    
+        section#sec-list {
+            width:80%;
+        }
+    
+        input {
+            width:100%;
+    
+        }
+    
+        #tb-lista thead {
+            background-color:lightblue;
+            text-align: center;
+            overflow:scroll;
+            max-height: 500px;
+        }
+    
+        #div-scroll{
+            overflow-y:scroll;
+            max-height: 500px;
+        }
+        </style>
+    </head>
+    <body>
+    
+        <header>
+            <h1>Exercicio de SPA</h1>
+        </header>
+    
+        <main>
+        <section id="sec-form">
+        <h2>Formulário</h2>
+        <div>
+            Dia/Hora:<br/>
+            <select id="in-mes"></select><select id="in-dia"></select><select id="in-hora"></select><br/>
+            Especialidade:<br/>
+            <select id="in-espec">
+            <option value="PED">Pediatra</option> 
+            <option value="CLI">Clinico Geral</option> 
+            <option value="OTO">Otorrino</option> 
+            </select>
+            <br/>
+            Paciente:<br/> 
+            <input id="in-paciente" type="text"><br/><br/>
+            <button id="btn-incluir">Incluir</button>
+        </div>
+        </section>
+        
+        <section id="sec-list">
+        <h2>Lista</h2>
+        <div id="div-scroll">
+        <table id="tb-lista" width="100%">
+            <thead>
+                <td>MÊS</td>
+                <td>DIA</td>
+                <td>HORA</td>
+                <td>ESPECIALIDADE</td>
+                <td>PACIENTE</td>
+                <td>&NonBreakingSpace;</td>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+        </div>
+        </section>
+    </main>
+    </body> 
+    </html> 

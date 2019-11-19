@@ -1,0 +1,144 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax001</title>
+    
+    <script 
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    
+   <script>
+
+     const urlbase = "http://localhost:8081/mesquita/javascript/jquery/ajax/app_client.php"
+
+     var token="";
+
+     function login() {
+
+        //console.log("http://localhost:3333/api/auth/login?user="+$("#loginUsername").val()+"&pwd="+$("#loginPassword").val());
+
+        $.ajax({
+            type: "GET",
+            crossdomain: true,
+            //url: "http://localhost:3333/api/auth/login?user="+$("#input-loginUsername").val()+"&pwd="+$("#input-loginPassword").val(),
+            url: urlbase+"?action=login&user="+$("#input-loginUsername").val()+"&pwd="+$("#input-loginPassword").val(),
+            beforeSend: function()
+			{	
+				$("#btn-login").html('Validando ...');
+			},
+            success: function (result) {
+                console.log(result);
+                console.log(result.token);
+                token=result.token;
+                $("#div-loginResult").html("Login realizado com sucesso");
+                $("#btn-login").html('Login');
+                $("#btn-logout").show();
+                $("#form-login").hide();
+
+            },
+            error: function (xhr, status, err) {
+                $("#div-loginResult").html(status+" : "+err+" : "+xhr.responseText);
+                console.error(xhr, status, err);
+                $("#btn-login").html('Tentar novamente');
+
+            }
+        });
+
+     } //login
+
+     function logout() {
+        $.ajax({
+            type: "GET",
+            crossdomain: true,
+            //url: "http://localhost:3333/api/auth/logout",
+            url: urlbase+"?action=logout",
+            beforeSend: function()
+			{	
+				$("#btn-login").html('Saindo ...');
+			},
+            success: function (result) {
+                
+                token="";
+
+                $("#div-loginResult").html("");
+                $("#btn-login").html('Login');
+                $("#form-login").show();
+            },
+            error: function (xhr, status, err) {
+                $("#div-loginResult").html(status+" : "+err+" : "+xhr.responseText);
+                console.error(xhr, status, err);
+                $("#btn-login").html('Tentar novamente');
+
+            }
+        });
+ 
+     }
+
+     function carrega() {   
+        console.log('entrou em carrega')
+
+        $.ajaxSetup({
+          headers : {
+             'x-access-token' : token
+          }
+        });
+
+        $.getJSON(urlbase+"?action=users", function(data) {
+           
+           $("#div-erro").hide();
+           $.each(data, function(chave,linha) {
+
+            var itens = [];
+                $.each( linha, function( key, val ) {
+                    itens.push( "<td>" + val + "</td>" );
+                });
+               $('#tabela > tbody:last-child').append("<tr>"+itens.join("")+"</tr>");
+           });
+
+
+        })
+        .fail(function(data) { 
+            $("#div-erro").show();
+            $("#div-erro").html("Erro: "+data.responseText);
+            //alert("error "+data); console.log(data); 
+            
+            })
+        
+     
+     }
+   </script>
+
+
+  </head>
+  <body>
+    <div id="form-login">
+    <h2>Login</h2>
+     Login:<input type="text" name="username" id="input-loginUsername"><br>
+     Senha:<input type="password" name="password" id="input-loginPassword"><br>
+     <div id="div-loginResult"></div> 
+     <button id="btn-login" onclick="login()">Login</button>
+    </div> 
+     <button id="btn-logout" onclick="logout()" style="display:none">Logout</button>
+     
+
+
+
+     <h2>Carregamento</h2>
+     <p>Este exemplo demonstra o uso de JQuery com Ajax:</p>
+     <button onclick="carrega()">Busca dados</button>
+     <div id="div-erro"></div>
+     <table id="tabela">
+         <thead>
+             <tr>
+                 <td>ID</td>
+                 <td>USUARIO</td>
+                 <td>NOME</td>   
+             </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+     </table>
+  </body>
+</html>
