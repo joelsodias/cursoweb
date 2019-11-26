@@ -1,0 +1,69 @@
+<style>
+* {
+    margin:0px;
+    padding:0px;
+} 
+
+header {
+    margin:40px 20px;
+}
+
+h2 {
+    margin:40px 20px;
+    text-align: center;
+}
+
+main {
+    display:flex;
+
+}
+
+section {
+    border:1px solid #ccc;
+    padding:10px;
+    margin:50px;
+}
+
+section#sec-form {
+    width:20%;
+}
+
+section#sec-list {
+    width:80%;
+}
+
+input {
+    width:100%;
+
+}
+
+#tb-lista thead {
+    background-color:lightblue;
+    text-align: center;
+    overflow:scroll;
+    max-height: 500px;
+}
+
+#div-scroll{
+    overflow-y:scroll;
+    max-height: 500px;
+}
+
+div#loader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    b-order: 1px solid #ccc;
+} 
+
+tr.salvo {
+    background-color: darkseagreen;
+}
+
+tr.novo {
+    background-color:khaki;
+}
+
+tr.remover {
+    background-color:lightcoral;
+}

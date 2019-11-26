@@ -1,0 +1,64 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>Ajax001</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <script 
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+    <script src="funcoes.js"></script>
+    <script src="app.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <h1>Exercicio de SPA</h1>
+    </header>
+    <div id="loader"><img src="loader/128x128.gif"></div>
+    <main id="main" style=" display:none" >
+    <section id="sec-form">
+    <h2>Formulário</h2>
+    <div>
+        Dia/Hora:<br/>
+        <select id="in-ano"></select>
+        <select id="in-mes"></select>
+        <select id="in-dia"></select>
+        <select id="in-hora"></select><br/>
+        Especialidades:<br/>
+        <select id="in-espec"></select>
+        <br/>
+        Medico:<br/>
+        <select id="in-med">
+        </select>
+        <br/>
+        Paciente:<br/> 
+        <input id="in-paciente" type="text"><br/><br/>
+        <button id="btn-incluir">Incluir</button>
+    </div>
+    </section>
+    
+    <section id="sec-list">
+    <h2>Lista</h2>
+    <div id="div-scroll">
+    <table id="tb-lista" width="100%">
+        <thead>
+                <td>STATUS</td>
+                <td>PACIENTE</td>
+                <td>ESPECIALIDADE</td>
+                <td>MEDICO</td>
+                <td>DATA/HORA</td>
+            <td>&NonBreakingSpace;</td>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <button id="btn-sync">Sincronizar</button>
+    </div>
+    </section>
+</main>
+</body> 
+</html> 
