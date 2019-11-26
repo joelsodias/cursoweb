@@ -41,6 +41,8 @@ if (isset($_REQUEST["action"])) {
       break;
 
       case "listAgendamentos":
+
+
         
       break;
 
@@ -63,13 +65,19 @@ if (isset($_REQUEST["action"])) {
          } else {
            $msg = mysqli_error($link);
            $msg .= " sql = ". $sql;
-           print_r($_REQUEST);
+           //print_r($_REQUEST);
            echo json_encode(array("uid" => $uid, "status" => "error","message" => $msg)); 
            http_response_code(500);
          }
        break;
+
+
       case "deleteAgendamento":break;
       
+
+
+
+
       default: 
       echo json_encode(array("uid" => $uid, "status" => "error", "message" => "no action defined")); 
       http_response_code(400);
