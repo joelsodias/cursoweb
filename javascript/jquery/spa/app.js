@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 
      $("#btn-incluir").click(function(){
-         incluirLinha(
+         incluirAgendamentoTela(
              "Pendente",
              $("#in-paciente").val(),
              $("#in-espec").val(),
@@ -34,13 +34,13 @@ $(document).ready(function () {
      $("#btn-sync").click(function(){
 
        $("tr.novo").each(function (key,item){
-          console.log(item) 
+          //console.log(item) 
           incluirAgendamentoBD(this,item)
 
        })
 
        $("tr.remover").each(function (key,item){
-          console.log(item) 
+          //console.log(item) 
           removerAgendamentoBD(this,item)
           
 

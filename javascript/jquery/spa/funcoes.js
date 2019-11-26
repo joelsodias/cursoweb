@@ -47,55 +47,24 @@ function iniciaCombosDataHora() {
 }
 
 
-function incluirLinha(
-    status,
-    nome_paciente,
-    codigo_especialidade,
-    nome_especialidade,
-    id_medico,
-    nome_medico,
-    datahora
-) {
-    var uid = "x" + new Date().valueOf();
-    var linha =
-         "<tr id='"+uid+"' class='novo'>"
-         +  "<td data-status>"+status+"</td>"
-         +  "<td data-pac>"+nome_paciente+"</td>"
-         +  "<td data-esp='"+codigo_especialidade+"'>"+nome_especialidade+"</td>" 
-         +  "<td data-med='"+id_medico+"'>"+nome_medico+"</td>"
-         +  "<td data-datahora>"+datahora+"</td>"
-         +  "<td><button onclick='removerLinha(\""+uid+"\")'>Excluir</button></td>"
-         + "</tr>"
 
-    $("#tb-lista > tbody").append(linha);
-   }
-
-   function removerLinha(id) {
-    if ($("#"+id).hasClass("novo")) {
-        $("#"+id).remove();
-    } else    
-    if ($("#"+id).hasClass("salvo")) {
-        $("#"+id).removeClass("salvo");
-         $("#"+id).addClass("remover");
-       } 
-   }
 
 
    function carregaComboEspecialidades() {
     $.get("crud.php", { action : "listEspecialidades"  })
      .done(data => {
          $("#in-espec").empty();
-         console.log(data);
+         //console.log(data);
          $.each(JSON.parse(data), function (key, item) {
-         //console.log(item.codigo);
+         ////console.log(item.codigo);
          $('#in-espec').append(
              $('<option></option>').val(item.codigo).html(item.nome)
            )
          });
          //$("#in-espec").val("PED");
 
-         console.log($('#in-espec'));
-         console.log($('#in-espec').val())
+         //console.log($('#in-espec'));
+         //console.log($('#in-espec').val())
          carregaComboMedicos($("#in-espec ").val());
 
       }
@@ -112,7 +81,7 @@ function carregaComboMedicos(e) {
      .done(data => {
          $("#in-med").empty();
          $.each(JSON.parse(data), function (key, item) {
-         //console.log(item);
+         ////console.log(item);
            $('#in-med').append(
              $('<option></option>').val(item.id).html(item.nome)
            )
@@ -123,6 +92,40 @@ function carregaComboMedicos(e) {
 
   
 
+function incluirAgendamentoTela(
+    status,
+    nome_paciente,
+    codigo_especialidade,
+    nome_especialidade,
+    id_medico,
+    nome_medico,
+    datahora
+) {
+    var uid = "x" + new Date().valueOf();
+    var linha =
+         "<tr id='"+uid+"' class='novo'>"
+         +  "<td data-status>"+status+"</td>"
+         +  "<td data-pac>"+nome_paciente+"</td>"
+         +  "<td data-esp='"+codigo_especialidade+"'>"+nome_especialidade+"</td>" 
+         +  "<td data-med='"+id_medico+"'>"+nome_medico+"</td>"
+         +  "<td data-datahora>"+datahora+"</td>"
+         +  "<td><button onclick='removerAgendamentoTela(\""+uid+"\")'>Excluir</button></td>"
+         + "</tr>"
+
+    $("#tb-lista > tbody").append(linha);
+   }
+
+   function removerAgendamentoTela(id) {
+    if ($("#"+id).hasClass("novo")) {
+        $("#"+id).remove();
+    } else    
+    if ($("#"+id).hasClass("salvo")) {
+        $("#"+id).removeClass("salvo");
+         $("#"+id).addClass("remover");
+       } 
+   }
+
+
 
 function incluirAgendamentoBD(linha,coluna){
     var params = {}
@@ -132,12 +135,12 @@ function incluirAgendamentoBD(linha,coluna){
     params.pac = $(coluna).find("td[data-pac]").text();
     params.med = $(coluna).find("td[data-med]").attr("data-med");
     params.datahora = $(coluna).find("td[data-datahora]").text();
-    console.log(params)
+    //console.log(params)
     $.post("crud.php", params)
      .done(function(data){
-         console.log('data:',data)
+         //console.log('data:',data)
          var res = JSON.parse(data);
-         console.log('res:',res)
+         //console.log('res:',res)
          $(linha).removeClass("novo");
          $(linha).addClass("salvo");
          $(linha).find("[data-status]").text("salvo");
@@ -145,7 +148,7 @@ function incluirAgendamentoBD(linha,coluna){
          return true;
          })
      .fail(function (data){
-         console.log('fail',data)
+         //console.log('fail',data)
          return false;
          })
 }
@@ -154,5 +157,7 @@ function removerAgendamentoBD(linha,coluna){
     var params = {}
     params.action = "deleteAgendamento";
     params.bdid = $(linha).attr("dbid");
+
+    //console.log("ID "+params.bdid+": Precisa implementar a delete no banco de dados");
 
 }
